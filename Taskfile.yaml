@@ -1,0 +1,149 @@
+version: '3'
+
+vars:
+  GO_MODULE: github.com/yourusername/draftforge
+  API_PORT: 8080
+  FRONTEND_PORT: 5173
+
+tasks:
+  # Setup and initialization
+  setup:
+    desc: Initialize project (install deps, start DB, run migrations)
+    cmds:
+      - task: go:mod
+      - task: db:up
+      - task: db:migrate
+      - task: frontend:install
+
+  # Development tasks
+  dev:
+    desc: Start full development environment (DB + backend + frontend)
+    deps: [db:up]
+    cmds:
+      - task: api:dev
+      - task: frontend:dev
+
+  # Go backend tasks
+  go:mod:
+    desc: Download Go dependencies
+    cmds:
+      - go mod download
+      - go mod tidy
+
+  go:build:
+    desc: Build all Go binaries
+    cmds:
+      - go build -o ./bin/api ./cmd/api
+      - go build -o ./bin/cli ./cmd/cli
+
+  go:lint:
+    desc: Run golangci-lint
+    cmds:
+      - golangci-lint run
+
+  go:fmt:
+    desc: Format Go code
+    cmds:
+      - go fmt ./...
+
+  go:test:
+    desc: Run Go tests
+    cmds:
+      - go test ./... -v
+
+  # API server tasks
+  api:dev:
+    desc: Start API development server with hot reload
+    cmds:
+      - air -c .air.toml
+
+  api:build:
+    desc: Build API for production
+    cmds:
+      - go build -o ./bin/api ./cmd/api
+
+  # Database tasks
+  db:up:
+    desc: Start PostgreSQL in Docker
+    cmds:
+      - docker run -d --name draftforge-db -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=draftforge postgres:17
+
+  db:down:
+    desc: Stop and remove PostgreSQL container
+    cmds:
+      - docker stop draftforge-db
+      - docker rm draftforge-db
+
+  db:migrate:
+    desc: Run pending migrations
+    cmds:
+      - go run cmd/cli/main.go migrate up
+
+  db:migrate-down:
+    desc: Rollback last migration
+    cmds:
+      - go run cmd/cli/main.go migrate down
+
+  db:reset:
+    desc: Reset database (drop + recreate + migrate)
+    cmds:
+      - task: db:down
+      - task: db:up
+      - sleep 3
+      - task: db:migrate
+
+  db:console:
+    desc: Open psql console
+    cmds:
+      - docker exec -it draftforge-db psql -U postgres -d draftforge
+
+  # Frontend tasks
+  frontend:install:
+    desc: Install frontend dependencies
+    dir: frontend
+    cmds:
+      - npm install
+
+  frontend:dev:
+    desc: Start frontend dev server
+    dir: frontend
+    cmds:
+      - npm run dev
+
+  frontend:build:
+    desc: Build frontend for production
+    dir: frontend
+    cmds:
+      - npm run build
+
+  frontend:preview:
+    desc: Preview production build
+    dir: frontend
+    cmds:
+      - npm run preview
+
+  # Testing tasks
+  test:
+    desc: Run all tests (backend + frontend)
+    cmds:
+      - task: go:test
+      - task: frontend:test
+
+  frontend:test:
+    desc: Run frontend tests
+    dir: frontend
+    cmds:
+      - npm run test
+
+  # Utility tasks
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf bin/
+      - rm -rf frontend/build/
+      - rm -rf frontend/.svelte-kit/
+
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
