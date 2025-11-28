@@ -41,6 +41,7 @@ draftforge/
 ├── docs/
 │   ├── api-design.md         ✅ Complete API specification
 │   ├── architecture.md       ✅ System architecture doc
+│   ├── book-template-design.md ✅ Book repo template design
 │   ├── getting-started.md    ✅ Developer onboarding
 │   └── market-analysis.md    ✅ Already existed
 ├── .env.local.example        ✅ Environment template

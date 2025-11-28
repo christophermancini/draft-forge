@@ -1,0 +1,13 @@
+project:
+  title: "{{ .Title }}"
+  author: "{{ .Author }}"
+
+structure:
+  chapters_dir: "chapters"
+  stats_dir: "stats"
+  output_dir: "build"
+
+workflows:
+  stats: true
+  epub: true
+  pdf: false # Set to true if you want PDF output (requires LaTeX)

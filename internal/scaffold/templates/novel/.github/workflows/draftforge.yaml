@@ -1,0 +1,13 @@
+name: DraftForge Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    uses: draftforge/actions/.github/workflows/pipeline.yml@v1
+    with:
+      config: draftforge.yaml
