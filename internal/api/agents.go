@@ -14,6 +14,7 @@ import (
 type AgentService interface {
 	QueueRun(ctx context.Context, req agents.RunRequest) (models.AgentRun, error)
 	GetRun(ctx context.Context, id int64) (models.AgentRun, error)
+	ListRuns(ctx context.Context, projectID int64) ([]models.AgentRun, error)
 }
 
 type AgentHandler struct {
@@ -27,6 +28,7 @@ func NewAgentHandler(service AgentService) *AgentHandler {
 func (h *AgentHandler) Register(app fiber.Router) {
 	app.Post("/projects/:projectID/agents/run", h.queueRun)
 	app.Get("/projects/:projectID/agents/runs/:runID", h.getRun)
+	app.Get("/projects/:projectID/agents/runs", h.listRuns)
 }
 
 type queueRunRequest struct {
@@ -95,4 +97,21 @@ func (h *AgentHandler) getRun(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{"data": run})
+}
+
+func (h *AgentHandler) listRuns(c *fiber.Ctx) error {
+	projectID, err := strconv.ParseInt(c.Params("projectID"), 10, 64)
+	if err != nil || projectID <= 0 {
+		return fiber.NewError(fiber.StatusBadRequest, "invalid project id")
+	}
+
+	runs, err := h.service.ListRuns(c.Context(), projectID)
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(fiber.Map{
+		"data": runs,
+		"meta": fiber.Map{"count": len(runs)},
+	})
 }

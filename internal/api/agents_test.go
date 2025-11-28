@@ -134,6 +134,7 @@ func TestGetRunHandlerSuccess(t *testing.T) {
 type stubAgentService struct {
 	queueFunc func(ctx context.Context, req agents.RunRequest) (models.AgentRun, error)
 	getFunc   func(ctx context.Context, id int64) (models.AgentRun, error)
+	listFunc  func(ctx context.Context, projectID int64) ([]models.AgentRun, error)
 }
 
 func (s *stubAgentService) QueueRun(ctx context.Context, req agents.RunRequest) (models.AgentRun, error) {
@@ -148,4 +149,11 @@ func (s *stubAgentService) GetRun(ctx context.Context, id int64) (models.AgentRu
 		return models.AgentRun{}, nil
 	}
 	return s.getFunc(ctx, id)
+}
+
+func (s *stubAgentService) ListRuns(ctx context.Context, projectID int64) ([]models.AgentRun, error) {
+	if s.listFunc == nil {
+		return nil, nil
+	}
+	return s.listFunc(ctx, projectID)
 }

@@ -49,6 +49,7 @@ type RunStore interface {
 	MarkCompleted(ctx context.Context, id int64, results json.RawMessage, completedAt time.Time) error
 	MarkFailed(ctx context.Context, id int64, message string, completedAt time.Time) error
 	GetRun(ctx context.Context, id int64) (models.AgentRun, error)
+	ListRuns(ctx context.Context, projectID int64) ([]models.AgentRun, error)
 	ProjectExists(ctx context.Context, projectID int64) (bool, error)
 }
 
@@ -115,6 +116,10 @@ func (s *Service) QueueRun(ctx context.Context, req RunRequest) (models.AgentRun
 // GetRun returns a run by ID.
 func (s *Service) GetRun(ctx context.Context, id int64) (models.AgentRun, error) {
 	return s.store.GetRun(ctx, id)
+}
+
+func (s *Service) ListRuns(ctx context.Context, projectID int64) ([]models.AgentRun, error) {
+	return s.store.ListRuns(ctx, projectID)
 }
 
 func (s *Service) executeRun(ctx context.Context, run models.AgentRun, files []string) error {

@@ -43,6 +43,10 @@ Goal: deliver a usable, consistent UI for auth, project creation, and agent runs
 
 ## Styling & Quality
 
+- Aesthetic: calm editorial workspace—charcoal, off-white, and a single deep accent; subtle paper-like background; minimal, purposeful motion.
+  - Palette suggestion: charcoal `#1C1C1C`, off-white `#F7F3EC`, accent teal `#2F8F9D`, soft gray `#E3DFD7`, muted rust `#B26E63` for warning/secondary accents.
+  - Typography: readable editorial pairing (e.g., Source Serif Pro for headings/body, paired with Source Sans/Work Sans for UI). Generous line-height and spacing.
+  - Components: simple line icons, gentle shadows, whitespace-heavy layout; avoid neon/glassmorphism.
 - Keep it clean and minimal: consistent spacing, neutral palette, clear typography; avoid unstyled defaults.
 - Form validation on required fields; inline error messages on failed API calls.
 - Type all API responses; centralize models in `src/lib/types.ts`.
