@@ -71,12 +71,14 @@ task setup
 ```
 
 This command will:
+
 - ✅ Install Go dependencies
 - ✅ Start PostgreSQL in Docker
 - ✅ Run database migrations
 - ✅ Install frontend dependencies
 
 **Expected output:**
+
 ```
 task: [go:mod] go mod download
 task: [db:up] docker run -d --name draftforge-db ...
@@ -92,6 +94,7 @@ task dev
 ```
 
 This starts three services:
+
 - 🟢 **PostgreSQL** on `localhost:5432`
 - 🟢 **Go API** on `http://localhost:8080`
 - 🟢 **SvelteKit Frontend** on `http://localhost:5173`
@@ -108,20 +111,22 @@ You should see the DraftForge homepage with a "Login with GitHub" button.
 
 ```
 ```
+
 draftforge/
 ├── cmd/
-│   ├── api/               # Main HTTP server
-│   │   └── main.go        # Entry point
-│   └── cli/               # CLI tools (migrations)
-├── internal/              # Private packages
-│   ├── auth/              # JWT, OAuth handlers
-│   ├── projects/          # Project CRUD
-│   ├── ai/                # AI agent system
-│   ├── github/            # GitHub API client
-│   ├── db/                # Database utilities & migrations
-│   └── scaffold/          # Project templates
+│ ├── api/ # Main HTTP server
+│ │ └── main.go # Entry point
+│ └── cli/ # CLI tools (migrations)
+├── internal/ # Private packages
+│ ├── auth/ # JWT, OAuth handlers
+│ ├── projects/ # Project CRUD
+│ ├── ai/ # AI agent system
+│ ├── github/ # GitHub API client
+│ ├── db/ # Database utilities & migrations
+│ └── scaffold/ # Project templates
 ├── go.mod
 └── go.sum
+
 ```
 ├── frontend/                   # SvelteKit app
 │   ├── src/
@@ -240,6 +245,7 @@ curl http://localhost:8080/health
 ```
 
 Expected response:
+
 ```json
 {
   "status": "ok",
@@ -254,6 +260,7 @@ curl http://localhost:8080/api/v1/
 ```
 
 Expected response:
+
 ```json
 {
   "message": "DraftForge API v1"
@@ -281,12 +288,14 @@ You'll be redirected to GitHub for authorization.
 ### 4. Authorize the app
 
 After authorizing, you'll be redirected back to DraftForge with:
+
 - JWT access token (stored in localStorage)
 - User information
 
 ### 5. Verify authentication
 
 Check browser DevTools → Application → Local Storage:
+
 - `access_token`: Should contain JWT
 - `user`: Should contain your GitHub info
 
@@ -305,12 +314,14 @@ touch internal/db/migrations/002_add_feature.down.sql
 ### 2. Write migration
 
 **002_add_feature.up.sql:**
+
 ```sql
 -- Add new column to users table
 ALTER TABLE users ADD COLUMN bio TEXT;
 ```
 
 **002_add_feature.down.sql:**
+
 ```sql
 -- Remove column (rollback)
 ALTER TABLE users DROP COLUMN bio;
@@ -378,6 +389,7 @@ curl http://localhost:8080/api/v1/profile
 **Error:** `port 5432 already in use`
 
 **Solution:**
+
 ```bash
 # Check if PostgreSQL is already running
 docker ps
@@ -395,6 +407,7 @@ task db:up
 **Error:** `could not import github.com/...`
 
 **Solution:**
+
 ```bash
 cd backend
 go mod tidy
@@ -406,6 +419,7 @@ go mod download
 **Error:** `Cannot find module '@sveltejs/kit'`
 
 **Solution:**
+
 ```bash
 cd frontend
 rm -rf node_modules package-lock.json
@@ -417,6 +431,7 @@ npm install
 **Error:** `address already in use`
 
 **Solution:**
+
 ```bash
 # Check what's using the port
 # Windows:
@@ -431,6 +446,7 @@ API_PORT=8081
 **Error:** `migration failed`
 
 **Solution:**
+
 ```bash
 # Check migration syntax
 cat internal/db/migrations/XXX_name.up.sql

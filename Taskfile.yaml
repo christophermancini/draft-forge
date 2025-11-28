@@ -10,113 +10,113 @@ tasks:
   setup:
     desc: Initialize project (install deps, start DB, run migrations)
     cmds:
-      - task: go:mod
-      - task: db:up
-      - task: db:migrate
-      - task: frontend:install
+      - task: go/mod
+      - task: db/up
+      - task: db/migrate
+      - task: frontend/install
 
   # Development tasks
   dev:
     desc: Start full development environment (DB + backend + frontend)
-    deps: [db:up]
+    deps: [db/up]
     cmds:
-      - task: api:dev
-      - task: frontend:dev
+      - task: api/dev
+      - task: frontend/dev
 
   # Go backend tasks
-  go:mod:
+  go/mod:
     desc: Download Go dependencies
     cmds:
       - go mod download
       - go mod tidy
 
-  go:build:
+  go/build:
     desc: Build all Go binaries
     cmds:
       - go build -o ./bin/api ./cmd/api
       - go build -o ./bin/cli ./cmd/cli
 
-  go:lint:
+  go/lint:
     desc: Run golangci-lint
     cmds:
       - golangci-lint run
 
-  go:fmt:
+  go/fmt:
     desc: Format Go code
     cmds:
       - go fmt ./...
 
-  go:test:
+  go/test:
     desc: Run Go tests
     cmds:
       - go test ./... -v
 
   # API server tasks
-  api:dev:
+  api/dev:
     desc: Start API development server with hot reload
     cmds:
       - air -c .air.toml
 
-  api:build:
+  api/build:
     desc: Build API for production
     cmds:
       - go build -o ./bin/api ./cmd/api
 
   # Database tasks
-  db:up:
+  db/up:
     desc: Start PostgreSQL in Docker
     cmds:
       - docker run -d --name draftforge-db -p 5432:5432 -e POSTGRES_PASSWORD=password -e POSTGRES_DB=draftforge postgres:17
 
-  db:down:
+  db/down:
     desc: Stop and remove PostgreSQL container
     cmds:
       - docker stop draftforge-db
       - docker rm draftforge-db
 
-  db:migrate:
+  db/migrate:
     desc: Run pending migrations
     cmds:
       - go run cmd/cli/main.go migrate up
 
-  db:migrate-down:
+  db/migrate-down:
     desc: Rollback last migration
     cmds:
       - go run cmd/cli/main.go migrate down
 
-  db:reset:
+  db/reset:
     desc: Reset database (drop + recreate + migrate)
     cmds:
-      - task: db:down
-      - task: db:up
+      - task: db/down
+      - task: db/up
       - sleep 3
-      - task: db:migrate
+      - task: db/migrate
 
-  db:console:
+  db/console:
     desc: Open psql console
     cmds:
       - docker exec -it draftforge-db psql -U postgres -d draftforge
 
   # Frontend tasks
-  frontend:install:
+  frontend/install:
     desc: Install frontend dependencies
     dir: frontend
     cmds:
       - npm install
 
-  frontend:dev:
+  frontend/dev:
     desc: Start frontend dev server
     dir: frontend
     cmds:
       - npm run dev
 
-  frontend:build:
+  frontend/build:
     desc: Build frontend for production
     dir: frontend
     cmds:
       - npm run build
 
-  frontend:preview:
+  frontend/preview:
     desc: Preview production build
     dir: frontend
     cmds:
@@ -126,10 +126,10 @@ tasks:
   test:
     desc: Run all tests (backend + frontend)
     cmds:
-      - task: go:test
-      - task: frontend:test
+      - task: go/test
+      - task: frontend/test
 
-  frontend:test:
+  frontend/test:
     desc: Run frontend tests
     dir: frontend
     cmds:
@@ -142,6 +142,17 @@ tasks:
       - rm -rf bin/
       - rm -rf frontend/build/
       - rm -rf frontend/.svelte-kit/
+
+  fmt:
+    desc: Format all source files (Go, Markdown)
+    cmds:
+      - task: go/fmt
+      - task: md/fmt
+
+  md/fmt:
+    desc: Format Markdown with dprint
+    cmds:
+      - npx dprint fmt
 
   default:
     desc: Show available tasks

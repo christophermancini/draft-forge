@@ -1,6 +1,7 @@
 # CLAUDE.md
 
 ## Project: DraftForge
+
 **Tagline:** Forge your draft. Keep your voice.
 
 **Purpose:** An AI-assisted authoring platform for writers who want control over their craft. DraftForge helps authors organize, refine, and publish long-form creative works (novels, screenplays, non-fiction) using Markdown, Git, and AI editorial agents—without sacrificing their authentic voice.
@@ -10,21 +11,25 @@
 ## 🎯 Core Philosophy
 
 **Authors Own Everything**
+
 - Every project lives in the author's GitHub account
 - No vendor lock-in—all files are standard Markdown
 - Authors can export and continue elsewhere at any time
 
 **AI Assists, Never Replaces**
+
 - AI acts as editorial assistant: critique, suggestions, consistency checks
 - Authors make all creative decisions
 - No "generate chapter" features—we support authentic creativity
 
 **Git-Native Architecture**
+
 - Version control is built-in, not bolted-on
 - GitHub Actions automate the boring parts (stats, builds, linting)
 - Branching for drafts, PRs for editorial review
 
 **Multi-Model Flexibility**
+
 - Authors choose AI models based on task and budget
 - Support for Claude, GPT-4, Gemini, and local models
 - BYOK (Bring Your Own Key) option for advanced users
@@ -34,15 +39,16 @@
 ## 🏗️ Architecture Overview
 
 ### Tech Stack
-| Layer | Technology | Rationale |
-|-------|-----------|-----------|
-| **Frontend** | SvelteKit + Tailwind | Fast, modern, great DX |
-| **Backend** | Go (Fiber) + PostgreSQL | Performance, type safety, easy deployment |
-| **Storage** | Cloudflare R2 | Cost-effective object storage for exports |
-| **Auth** | GitHub OAuth + GitHub App | Seamless GitHub integration |
-| **AI Routing** | OpenRouter API | Multi-model support without vendor lock-in |
-| **CI/CD** | GitHub Actions | Already in author's workflow |
-| **Editor** | Monaco (VS Code editor) | Familiar, powerful, extensible |
+
+| Layer          | Technology                | Rationale                                  |
+| -------------- | ------------------------- | ------------------------------------------ |
+| **Frontend**   | SvelteKit + Tailwind      | Fast, modern, great DX                     |
+| **Backend**    | Go (Fiber) + PostgreSQL   | Performance, type safety, easy deployment  |
+| **Storage**    | Cloudflare R2             | Cost-effective object storage for exports  |
+| **Auth**       | GitHub OAuth + GitHub App | Seamless GitHub integration                |
+| **AI Routing** | OpenRouter API            | Multi-model support without vendor lock-in |
+| **CI/CD**      | GitHub Actions            | Already in author's workflow               |
+| **Editor**     | Monaco (VS Code editor)   | Familiar, powerful, extensible             |
 
 ### System Components
 
@@ -84,6 +90,7 @@
 ## 📁 Repository Structure
 
 ### Platform Repository (This Repo)
+
 ```bash
 draftforge/
 ├── cmd/
@@ -126,6 +133,7 @@ draftforge/
 ```
 
 ### User Project Structure (What Gets Created)
+
 ```bash
 my-novel/                          # Author's GitHub repo
 ├── chapters/
@@ -159,6 +167,7 @@ my-novel/                          # Author's GitHub repo
 ## 🤖 AI Agent System
 
 ### Agent Philosophy
+
 - **Domain-specific:** Each agent has one clear responsibility
 - **Cost-conscious:** Only analyze changed content, not entire manuscript
 - **Configurable:** Authors enable/disable agents per project
@@ -167,47 +176,58 @@ my-novel/                          # Author's GitHub repo
 ### Core Agents (MVP)
 
 #### 1. ContinuityBot
+
 **Model:** Claude 3.5 Sonnet (best reasoning for complex context)
 **Triggers:** On PR creation, on-demand
 **Checks:**
+
 - Character consistency (appearance, traits, backstory)
 - World rules (magic systems, technology, geography)
 - Plot threads (unresolved storylines, contradictions)
 
 **Example Output:**
+
 ```markdown
 ## Continuity Issues Found
 
 ### Chapter 12, Line 45
+
 ❌ Character "Sarah" has blue eyes here, but brown eyes in Chapter 3.
 
 ### Chapter 15, Line 102
-⚠️  The magic system established in Chapter 2 states spells require
+
+⚠️ The magic system established in Chapter 2 states spells require
 verbal components, but this spell is cast silently.
 ```
 
 #### 2. StyleBot
+
 **Model:** GPT-4o-mini (fast, good for stylistic patterns)
 **Triggers:** On every commit to draft branch
 **Checks:**
+
 - Voice consistency (tense shifts, POV breaks)
 - Sentence variety and rhythm
 - Overused words or phrases
 - Readability metrics (Flesch-Kincaid, etc.)
 
 #### 3. TimelineBot
+
 **Model:** Gemini 1.5 Pro (excellent at structured analysis)
 **Triggers:** On-demand or weekly
 **Checks:**
+
 - Chronological consistency
 - Scene pacing (too fast/slow)
 - Chapter length balance
 - Time elapsed between events
 
 #### 4. FactBot
+
 **Model:** GPT-4.1 Turbo (best for factual accuracy)
 **Triggers:** On-demand (for non-fiction/historical)
 **Checks:**
+
 - Historical accuracy
 - Geographic correctness
 - Technical plausibility
@@ -248,9 +268,11 @@ agents:
 ## 🚀 Development Roadmap
 
 ### Phase 1: Core Platform (Months 1-6)
+
 **Goal:** Prove concept with technical writers
 
 **Features:**
+
 - [ ] GitHub OAuth + App integration
 - [ ] Project scaffolding (novel, technical book templates)
 - [ ] Web-based Markdown editor with preview
@@ -260,15 +282,18 @@ agents:
 - [ ] User dashboard (projects, stats, credits)
 
 **Success Metrics:**
+
 - 100-500 active users
 - 15% free-to-paid conversion
 - <$0.10 cost per AI review
 - 90%+ uptime
 
 ### Phase 2: Enhanced Workflow (Months 7-12)
+
 **Goal:** Expand to power users and fiction authors
 
 **Features:**
+
 - [ ] Multi-model AI routing with cost comparison
 - [ ] Timeline visualization (interactive scene graph)
 - [ ] Character database with relationship mapping
@@ -279,15 +304,18 @@ agents:
 - [ ] Offline mode (PWA)
 
 **Success Metrics:**
+
 - 1,000-5,000 active users
 - 20% conversion rate
 - 85%+ gross margin
 - 12+ month median retention
 
 ### Phase 3: Advanced Features (Year 2+)
+
 **Goal:** Category leadership and vertical expansion
 
 **Features:**
+
 - [ ] Series management (multi-book projects)
 - [ ] Screenplay and stage play templates
 - [ ] Advanced citation and sourcing for non-fiction
@@ -298,6 +326,7 @@ agents:
 - [ ] "Verified human-written" certification
 
 **Success Metrics:**
+
 - 10,000+ active users
 - Category leadership position
 - Profitability
@@ -310,6 +339,7 @@ agents:
 ### Pricing Tiers
 
 **Free (Hobbyist)**
+
 - 1 active project
 - 10,000 AI tokens/month (~5 reviews)
 - Basic agents (Style, Continuity)
@@ -317,6 +347,7 @@ agents:
 - EPUB/PDF exports
 
 **Creator ($19/month or $15/month annual)**
+
 - 5 active projects
 - 200,000 AI tokens/month (~100 reviews)
 - All agents
@@ -325,6 +356,7 @@ agents:
 - Version history (90 days)
 
 **Professional ($49/month or $39/month annual)**
+
 - Unlimited projects
 - 750,000 AI tokens/month (unlimited for some models)
 - All features
@@ -335,6 +367,7 @@ agents:
 - Version history (unlimited)
 
 **Enterprise (Custom)**
+
 - White-label options
 - Custom AI models
 - On-premise deployment
@@ -342,6 +375,7 @@ agents:
 - Dedicated support
 
 ### Credit System
+
 - Additional tokens: $10 per 100,000
 - Credits don't expire for paid users
 - Transparent cost breakdown per model
@@ -351,12 +385,14 @@ agents:
 ## 📊 Key Metrics & Goals
 
 ### Technical Metrics
+
 - **API Response Time:** p95 < 200ms
 - **Uptime:** 99.9%+
 - **AI Review Cost:** <$0.10 per review on average
 - **Build Success Rate:** 98%+ (EPUB/PDF compilation)
 
 ### Business Metrics
+
 - **Gross Margin:** >85% target
 - **CAC:** <$30 (organic + paid)
 - **LTV:CAC:** >3:1
@@ -365,6 +401,7 @@ agents:
 - **NPS:** >50
 
 ### Product Metrics
+
 - **Time to First Project:** <5 minutes
 - **Chapters Written per Month:** Average 10+ (engaged users)
 - **AI Reviews per User:** 5-15/month
@@ -375,18 +412,21 @@ agents:
 ## 🎨 Design Principles
 
 ### User Experience
+
 1. **Invisible Complexity:** Git should be transparent to non-technical users
 2. **Progressive Disclosure:** Show advanced features only when needed
 3. **Fast Feedback:** AI reviews should feel near-instant (<10 seconds)
 4. **Delight in Details:** Small animations, helpful tooltips, smart defaults
 
 ### Code Quality
+
 1. **Type Safety:** Use Go's type system; TypeScript on frontend
 2. **Testing:** >80% coverage on critical paths
 3. **Documentation:** Every public API has godoc/JSDoc
 4. **Performance:** Profile regularly; optimize hot paths
 
 ### AI Integration
+
 1. **Cost Transparency:** Show users what each review costs
 2. **Model Choice:** Let users pick models for different tasks
 3. **Graceful Degradation:** Fall back to cheaper models if quota exceeded
@@ -399,6 +439,7 @@ agents:
 ### When Working on This Project
 
 **DO:**
+
 - Write clean, idiomatic Go and modern JavaScript/Svelte
 - Follow established patterns in the codebase
 - Add tests for new features
@@ -408,6 +449,7 @@ agents:
 - Think about non-technical user experience
 
 **DON'T:**
+
 - Generate user-facing creative content (novels, chapters, etc.)
 - Make architectural changes without discussion
 - Add dependencies without justification
@@ -416,12 +458,14 @@ agents:
 - Over-engineer solutions
 
 ### Code Style
+
 - **Go:** Use `gofumpt` for formatting, `golangci-lint` for linting
 - **JavaScript/Svelte:** Use `prettier` for formatting, `eslint` for linting
 - **Markdown:** Keep clean and minimal; use standard formatting
 - **YAML:** Validate all workflow files before committing
 
 ### Git Workflow
+
 - **Branch Naming:** `feature/description`, `fix/description`, `docs/description`
 - **Commits:** Conventional Commits format (`feat:`, `fix:`, `docs:`, etc.)
 - **PRs:** Include description, screenshots (if UI), test coverage
@@ -448,6 +492,7 @@ These are ideas for later, not current priorities:
 ## 🤝 Contributing
 
 This project is currently in private development. Once we reach MVP, we'll open-source the agent system and accept community contributions for:
+
 - New agent types
 - Export templates
 - Language support

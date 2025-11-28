@@ -16,6 +16,7 @@ This document outlines where different types of data are stored in DraftForge an
 ### 1. **Author's Repository** (Source of Truth)
 
 #### Manuscript Content
+
 **Location:** `chapters/`, `manuscript/`
 **Format:** Markdown files
 **Ownership:** Author
@@ -28,6 +29,7 @@ chapters/
 ```
 
 **Why in repo:**
+
 - ✅ Version controlled
 - ✅ Portable and exportable
 - ✅ Works offline
@@ -37,6 +39,7 @@ chapters/
 ---
 
 #### Project Statistics
+
 **Location:** `.draftforge/stats.json`
 **Format:** JSON
 **Ownership:** Author
@@ -104,6 +107,7 @@ chapters/
 ```
 
 **Why in repo:**
+
 - ✅ Portable with project
 - ✅ Version controlled (git log shows progress)
 - ✅ Can view without DraftForge
@@ -111,6 +115,7 @@ chapters/
 - ✅ Authors own their metrics
 
 **Update workflow:**
+
 1. Author pushes commit
 2. GitHub Action counts words
 3. Action updates `.draftforge/stats.json`
@@ -121,6 +126,7 @@ chapters/
 ---
 
 #### Project Configuration
+
 **Location:** `.draftforge/config.yml`
 **Format:** YAML
 **Ownership:** Author
@@ -178,6 +184,7 @@ github_actions:
 ```
 
 **Why in repo:**
+
 - ✅ Version controlled (can revert settings)
 - ✅ Portable with project
 - ✅ Human-readable and editable
@@ -186,6 +193,7 @@ github_actions:
 ---
 
 #### Agent Results
+
 **Location:** `.draftforge/agent-runs/`
 **Format:** JSON files (one per run)
 **Ownership:** Author
@@ -198,6 +206,7 @@ github_actions:
 ```
 
 **Example file:**
+
 ```json
 {
   "run_id": "df-run-12345",
@@ -230,6 +239,7 @@ github_actions:
 ```
 
 **Why in repo:**
+
 - ✅ Complete audit trail
 - ✅ Can review past agent feedback
 - ✅ Portable with project
@@ -238,6 +248,7 @@ github_actions:
 ---
 
 #### Metadata
+
 **Location:** `manuscript/metadata.yml`
 **Format:** YAML
 **Ownership:** Author
@@ -280,6 +291,7 @@ cover_image: "../assets/cover.png"
 ```
 
 **Why in repo:**
+
 - ✅ Used for EPUB/PDF generation
 - ✅ Version controlled
 - ✅ Portable
@@ -290,10 +302,12 @@ cover_image: "../assets/cover.png"
 ### 2. **DraftForge Database** (Performance Cache & Coordination)
 
 #### User Accounts
+
 **Table:** `users`
 **Contains:** GitHub OAuth data, preferences, profile
 
 **Why in database:**
+
 - ✅ Authentication requires central storage
 - ✅ Fast user lookup
 - ✅ Not project-specific
@@ -301,15 +315,18 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Project Registry
+
 **Table:** `projects`
 **Contains:** Project metadata, GitHub repo links, settings cache
 
 **Why in database:**
+
 - ✅ Fast project listing for dashboard
 - ✅ Enables search and filtering
 - ✅ Links users to their repos
 
 **Sync strategy:**
+
 - Database is synced FROM `.draftforge/config.yml`
 - Repository is source of truth
 - Database caches for performance
@@ -317,15 +334,18 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Stats Cache
+
 **Table:** `project_stats`
 **Contains:** Cached word counts, streaks, recent history
 
 **Why in database:**
+
 - ✅ Fast dashboard queries
 - ✅ Aggregations and trends
 - ✅ Real-time updates
 
 **Sync strategy:**
+
 1. GitHub Action updates `.draftforge/stats.json`
 2. Webhook triggers sync to database
 3. Dashboard reads from database
@@ -334,10 +354,12 @@ cover_image: "../assets/cover.png"
 ---
 
 #### AI Credits & Billing
+
 **Table:** `ai_credits`, `ai_usage_log`
 **Contains:** Token balances, subscription tiers, usage history
 
 **Why in database:**
+
 - ✅ Real-time credit checking
 - ✅ Billing and invoicing
 - ✅ Usage analytics
@@ -349,15 +371,18 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Agent Run Queue
+
 **Table:** `agent_runs`
 **Contains:** Queued/running agent jobs, execution status
 
 **Why in database:**
+
 - ✅ Job queue management
 - ✅ Real-time status updates
 - ✅ Priority and retry logic
 
 **Sync strategy:**
+
 - Results written to `.draftforge/agent-runs/` after completion
 - Database tracks execution state
 - Repository stores final results
@@ -365,10 +390,12 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Collaborators
+
 **Table:** `collaborators`
 **Contains:** Multi-user access, invitations, permissions
 
 **Why in database:**
+
 - ✅ Access control (security-sensitive)
 - ✅ Real-time permission checks
 - ✅ Invitation system
@@ -378,10 +405,12 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Export Jobs
+
 **Table:** `export_jobs`
 **Contains:** EPUB/PDF generation queue and status
 
 **Why in database:**
+
 - ✅ Job queue management
 - ✅ Output storage links (Cloudflare R2)
 - ✅ Temporary (auto-expire after 30 days)
@@ -389,10 +418,12 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Notifications
+
 **Table:** `notifications`
 **Contains:** In-app alerts, unread status
 
 **Why in database:**
+
 - ✅ Real-time delivery
 - ✅ Read/unread tracking
 - ✅ Temporary (not historical)
@@ -400,10 +431,12 @@ cover_image: "../assets/cover.png"
 ---
 
 #### Webhooks
+
 **Table:** `webhooks`, `webhook_deliveries`
 **Contains:** Integration configs, delivery logs
 
 **Why in database:**
+
 - ✅ Service-level configuration
 - ✅ Delivery tracking and retry logic
 - ✅ Not project-specific
@@ -413,6 +446,7 @@ cover_image: "../assets/cover.png"
 ## 🔄 Sync Patterns
 
 ### **Repository → Database (Pull)**
+
 Triggered by GitHub webhooks:
 
 1. **Push event:**
@@ -424,6 +458,7 @@ Triggered by GitHub webhooks:
    - Validate JSON/YAML before syncing
 
 ### **Database → Repository (Push)**
+
 Triggered by user actions:
 
 1. **Settings changed in UI:**
@@ -439,18 +474,18 @@ Triggered by user actions:
 
 ## 🎯 Decision Matrix
 
-| Data Type | Repository | Database | Reason |
-|-----------|-----------|----------|--------|
-| **Manuscript content** | ✅ Primary | ❌ | Author ownership, version control |
-| **Project stats** | ✅ Primary | ✅ Cache | Portability + performance |
-| **Project config** | ✅ Primary | ✅ Cache | Portability + performance |
-| **Agent results** | ✅ Archive | ✅ Current | Audit trail + performance |
-| **User accounts** | ❌ | ✅ Only | Authentication requirement |
-| **AI credits** | ❌ | ✅ Only | Billing, not project-specific |
-| **Collaborators** | ❌* | ✅ Only | Security, access control |
-| **Export outputs** | ❌** | ✅ Only | Temporary, large files |
-| **Notifications** | ❌ | ✅ Only | Ephemeral, real-time |
-| **Webhooks** | ❌ | ✅ Only | Service-level config |
+| Data Type              | Repository | Database   | Reason                            |
+| ---------------------- | ---------- | ---------- | --------------------------------- |
+| **Manuscript content** | ✅ Primary | ❌         | Author ownership, version control |
+| **Project stats**      | ✅ Primary | ✅ Cache   | Portability + performance         |
+| **Project config**     | ✅ Primary | ✅ Cache   | Portability + performance         |
+| **Agent results**      | ✅ Archive | ✅ Current | Audit trail + performance         |
+| **User accounts**      | ❌         | ✅ Only    | Authentication requirement        |
+| **AI credits**         | ❌         | ✅ Only    | Billing, not project-specific     |
+| **Collaborators**      | ❌*        | ✅ Only    | Security, access control          |
+| **Export outputs**     | ❌**       | ✅ Only    | Temporary, large files            |
+| **Notifications**      | ❌         | ✅ Only    | Ephemeral, real-time              |
+| **Webhooks**           | ❌         | ✅ Only    | Service-level config              |
 
 \* Could add `.draftforge/collaborators.yml` in future
 \*\* Outputs stored in Cloudflare R2, not GitHub
@@ -460,16 +495,19 @@ Triggered by user actions:
 ## 🔐 Data Ownership Philosophy
 
 ### **Author Owns:**
+
 - All manuscript content
 - All project-specific data (stats, config, agent results)
 - All metadata (title, author, ISBN, etc.)
 
 ### **DraftForge Owns:**
+
 - User authentication records
 - Service usage (AI credits, billing)
 - Platform-level data (notifications, webhooks)
 
 ### **Shared/Synced:**
+
 - Project registry (repo is source of truth)
 - Project stats (repo is source of truth, DB caches)
 - Project settings (repo is source of truth, DB caches)
@@ -491,17 +529,20 @@ Triggered by user actions:
 ## 🚀 Implementation Priority
 
 ### Phase 1 (MVP)
+
 - ✅ `.draftforge/config.yml` (project settings)
 - ✅ `.draftforge/stats.json` (word counts, streaks)
 - ✅ Database sync via webhooks
 - ✅ GitHub Action for stats generation
 
 ### Phase 2
+
 - ✅ `.draftforge/agent-runs/` (agent results archive)
 - ✅ Bi-directional sync (UI changes → repo)
 - ✅ Conflict resolution (repo wins)
 
 ### Phase 3
+
 - ✅ `.draftforge/collaborators.yml` (optional)
 - ✅ `.draftforge/exports/` (build artifacts)
 - ✅ Offline mode (work without API)
@@ -511,12 +552,16 @@ Triggered by user actions:
 ## 📝 File Format Standards
 
 ### JSON Schema Validation
+
 All `.draftforge/*.json` files validated against JSON schemas:
+
 - `stats.schema.json`
 - `agent-run.schema.json`
 
 ### YAML Schema Validation
+
 All `.draftforge/*.yml` files validated against YAML schemas:
+
 - `config.schema.yml`
 - `metadata.schema.yml`
 

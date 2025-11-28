@@ -5,6 +5,7 @@
 The project structure has been reorganized to follow a more conventional Go monorepo pattern with `go.mod` at the root.
 
 ### Before
+
 ```
 draftforge/
 ├── backend/
@@ -16,6 +17,7 @@ draftforge/
 ```
 
 ### After
+
 ```
 draftforge/
 ├── go.mod              # ✅ Moved to root
@@ -37,12 +39,14 @@ draftforge/
 ## What Was Updated
 
 ### Files Modified
+
 - ✅ `Taskfile.yaml` - Removed all `dir: backend` references
 - ✅ `README.md` - Updated project structure diagram and paths
 - ✅ `docs/getting-started.md` - Updated all file path references
 - ✅ `docs/scaffold-summary.md` - Updated structure documentation
 
 ### Commands Now Work From Root
+
 ```bash
 # All these now run from project root
 go mod tidy
@@ -53,7 +57,9 @@ task api:dev
 ```
 
 ### Import Paths Unchanged
+
 Go import paths remain the same:
+
 ```go
 import "github.com/yourusername/draftforge/internal/auth"
 import "github.com/yourusername/draftforge/pkg/scaffold"

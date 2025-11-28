@@ -54,6 +54,7 @@ draftforge/
 ### 2. **Backend (Go) Components**
 
 #### Go Modules
+
 - ✅ Fiber v2.52.5 - Web framework
 - ✅ lib/pq - PostgreSQL driver
 - ✅ golang-jwt/jwt/v4 - JWT authentication
@@ -64,6 +65,7 @@ draftforge/
 - ✅ golang.org/x/oauth2 - OAuth 2.0
 
 #### Files Created
+
 - ✅ `cmd/api/main.go` - HTTP server with health check
 - ✅ `cmd/cli/main.go` - Migration CLI tool
 - ✅ `internal/db/db.go` - Database connection & migration runner
@@ -71,6 +73,7 @@ draftforge/
 - ✅ `pkg/db/migrations/001_initial_schema.down.sql` - Rollback
 
 #### Database Schema
+
 - ✅ `users` - User accounts (GitHub OAuth)
 - ✅ `projects` - Writing projects
 - ✅ `ai_credits` - Credit tracking
@@ -81,6 +84,7 @@ draftforge/
 ### 3. **Frontend (SvelteKit) Components**
 
 #### NPM Packages
+
 - ✅ SvelteKit 2.5.28
 - ✅ Svelte 5.1.9
 - ✅ TypeScript 5.6.3
@@ -90,6 +94,7 @@ draftforge/
 - ✅ Vite 5.4.8
 
 #### Files Created
+
 - ✅ `frontend/src/routes/+page.svelte` - Homepage with navbar
 - ✅ `frontend/src/routes/+layout.svelte` - Root layout
 - ✅ `frontend/src/app.html` - HTML template
@@ -103,6 +108,7 @@ draftforge/
 ### 4. **Development Tools**
 
 #### Taskfile.yaml Commands
+
 ```bash
 # Setup
 ✅ task setup           # Complete initialization
@@ -135,6 +141,7 @@ draftforge/
 ### 5. **Documentation**
 
 #### Created Files
+
 - ✅ `README.md` - 350+ lines, comprehensive setup guide
 - ✅ `docs/api-design.md` - Complete REST API specification
   - Authentication flow
@@ -172,24 +179,28 @@ draftforge/
 ## 🎯 Design Decisions Based on Your Answers
 
 ### 1. **API-First Development**
+
 ✅ Created comprehensive API design document
 ✅ RESTful endpoints defined
 ✅ Authentication flow documented
 ✅ Error handling standardized
 
 ### 2. **Hosting Strategy**
+
 ✅ DigitalOcean-compatible backend structure
 ✅ Cloudflare Pages adapter for frontend
 ✅ PostgreSQL configuration for managed database
 ✅ Environment-based configuration
 
 ### 3. **GitHub Integration**
+
 ✅ OAuth flow implemented in API design
 ✅ New repository creation pattern documented
 ✅ Webhook architecture defined
 ✅ No GitHub Enterprise support (can add later)
 
 ### 4. **AI Agent System**
+
 ✅ Event-driven architecture (queuing system)
 ✅ Credit tracking system in database
 ✅ Fallback model support (TODO marked)
@@ -197,6 +208,7 @@ draftforge/
 ✅ Retry logic documented
 
 ### 5. **User Experience**
+
 ✅ Git concepts not hidden but simplified
 ✅ Progressive disclosure planned
 ✅ Power user features available
@@ -207,6 +219,7 @@ draftforge/
 ## 📋 Next Steps
 
 ### Immediate (Week 1)
+
 1. [ ] Run `task setup` to initialize
 2. [ ] Configure GitHub OAuth app
 3. [ ] Test database migrations
@@ -214,6 +227,7 @@ draftforge/
 5. [ ] Test frontend hot reload
 
 ### Short Term (Weeks 2-4)
+
 1. [ ] Implement JWT authentication handlers
 2. [ ] Build GitHub OAuth callback handler
 3. [ ] Create user registration flow
@@ -221,6 +235,7 @@ draftforge/
 5. [ ] Build project creation UI
 
 ### Medium Term (Months 2-3)
+
 1. [ ] GitHub repository scaffolding
 2. [ ] AI agent queue system
 3. [ ] OpenRouter integration
@@ -228,6 +243,7 @@ draftforge/
 5. [ ] Agent run tracking
 
 ### Long Term (Months 4-6)
+
 1. [ ] Monaco editor integration
 2. [ ] Real-time collaboration
 3. [ ] Advanced AI features
@@ -239,12 +255,14 @@ draftforge/
 ## 🔍 What to Review
 
 ### Critical Files to Understand
+
 1. **Backend Entry Point:** `backend/cmd/api/main.go`
 2. **Database Schema:** `backend/pkg/db/migrations/001_initial_schema.up.sql`
 3. **API Design:** `docs/api-design.md`
 4. **Architecture:** `docs/architecture.md`
 
 ### Configuration to Update
+
 1. **GitHub OAuth:** Get Client ID and Secret
 2. **JWT Secrets:** Generate with `openssl rand -base64 32`
 3. **OpenRouter API Key:** Sign up at openrouter.ai

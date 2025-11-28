@@ -110,6 +110,7 @@ CREATE INDEX idx_users_is_active ON users(is_active) WHERE deleted_at IS NULL;
 ```
 
 **Preferences JSONB structure:**
+
 ```json
 {
   "theme": "dark",
@@ -188,6 +189,7 @@ CREATE INDEX idx_projects_created_at ON projects(created_at DESC);
 ```
 
 **Settings JSONB structure:**
+
 ```json
 {
   "agents": {
@@ -261,6 +263,7 @@ CREATE INDEX idx_project_stats_updated_at ON project_stats(updated_at DESC);
 ```
 
 **Stats History JSONB structure:**
+
 ```json
 [
   {
@@ -333,6 +336,7 @@ CREATE INDEX idx_ai_credits_next_billing_date ON ai_credits(next_billing_date);
 ```
 
 **Tier Limits:**
+
 ```go
 const (
     FreeTier         = 10000    // tokens/month
@@ -456,6 +460,7 @@ CREATE INDEX idx_agent_runs_trigger ON agent_runs(trigger);
 ```
 
 **Results JSONB structure:**
+
 ```json
 {
   "issues": [
@@ -539,6 +544,7 @@ CREATE INDEX idx_collaborators_invitation_status ON collaborators(invitation_sta
 ```
 
 **Permissions JSONB structure:**
+
 ```json
 {
   "can_read": true,
@@ -811,17 +817,20 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 ## 🔐 Security Considerations
 
 ### Encryption at Rest
+
 - `github_access_token`, `github_refresh_token` - Encrypted with AES-256
 - `github_webhook_secret` - Encrypted
 - `byok_openrouter_key` - Encrypted
 - Encryption keys managed via environment variables (future: AWS KMS, HashiCorp Vault)
 
 ### Sensitive Data Access
+
 - Use application-level encryption/decryption
 - Never log tokens or secrets
 - Rotate encryption keys periodically
 
 ### Data Retention
+
 - Soft delete for users and projects (30-day recovery window)
 - Auto-expire export jobs after 30 days
 - Auto-delete old notifications after 90 days
@@ -832,20 +841,24 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 ## 📈 Performance Optimizations
 
 ### Indexes
+
 - All foreign keys indexed
 - Frequently filtered columns indexed (status, created_at, etc.)
 - Composite indexes where appropriate
 
 ### Partitioning Strategy
+
 - `ai_usage_log` - Partition by month
 - `audit_log` - Partition by month
 - `webhook_deliveries` - Partition by month
 
 ### Archival
+
 - Move old data to separate archive tables
 - Use TimescaleDB for time-series data (future)
 
 ### Caching Strategy
+
 - User profiles and preferences - Redis cache (5 min TTL)
 - Project settings - Redis cache (1 min TTL)
 - AI credit balance - Redis cache (30 sec TTL)
@@ -856,6 +869,7 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 ## 🧪 Data Validation Rules
 
 ### Business Rules
+
 1. User cannot have > 100 active projects (free tier)
 2. Project slug must be URL-safe (lowercase, hyphen, underscore only)
 3. Agent runs auto-cancel after 5 minutes
@@ -864,6 +878,7 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 6. Collaborators limited to 5 per project (free tier)
 
 ### Constraints
+
 - Email format validation (application layer)
 - Username: 3-39 characters, alphanumeric + hyphen
 - Project name: 1-100 characters
@@ -875,15 +890,19 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 ## 🚀 Migration Strategy
 
 ### Phase 1 (Current)
+
 - Users, Projects, AI Credits, AI Usage Log, Agent Runs, Project Stats
 
 ### Phase 2 (Months 2-3)
+
 - Collaborators, Export Jobs, Notifications
 
 ### Phase 3 (Months 4-6)
+
 - Webhooks, Webhook Deliveries, Feature Flags, Audit Log
 
 ### Rollback Plan
+
 - Each migration has corresponding `.down.sql`
 - Test rollback in staging before production deployment
 - Keep backups before major schema changes
@@ -893,6 +912,7 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 ## 📝 Notes
 
 ### Future Enhancements
+
 - Full-text search (PostgreSQL `tsvector` or Elasticsearch)
 - Character/world database tables
 - Timeline event tracking
@@ -901,6 +921,7 @@ CREATE INDEX idx_feature_flags_is_enabled ON feature_flags(is_enabled);
 - Social features (following, likes, comments)
 
 ### Alternatives Considered
+
 - NoSQL for flexibility → Rejected (relational data, ACID compliance critical)
 - Separate analytics DB → Deferred (premature optimization)
 - Graph DB for relationships → Deferred (not needed at MVP scale)

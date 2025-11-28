@@ -19,15 +19,18 @@ The goal is a UX where non-technical writers, editors, agents, and production pa
 ## 2. User Roles & Journeys
 
 ### Authors
+
 - Create/import manuscripts (Markdown-first).
 - Request stats, exports (HTML/EPUB/PDF/DOCX), AI suggestions, or legal packets via one-click UI.
 - Track tasks (e.g., “Chapter 12 revision,” “Legal docs prepared”).
 
 ### Editors/Agents
+
 - Comment/review directly in DraftForge UI while committing suggestions to branches or PRs.
 - Approve/reject workflow runs (e.g., release packaging).
 
 ### Tech/Production Partners
+
 - Define new workflows (e.g., SSML generation, audiobook scripts, timeline builds).
 - Monitor resource usage / GHA credits.
 
@@ -36,11 +39,13 @@ The goal is a UX where non-technical writers, editors, agents, and production pa
 ## 3. Features & Modules
 
 ### 3.1 Content Layer
+
 - Markdown chapters with frontmatter (title, POV, entry/exit hooks, tags).
 - Ancillary docs (legal evidence, timelines, AI transcripts) stored under `/docs`.
 - Metadata index (JSON/YAML) describing book structure for quick reference.
 
 ### 3.2 Workflow Engine (GitHub Actions)
+
 - **Stats** – run `cmd/generate-stats` (as seen in Immortal) after chapter changes.
 - **Lint/Format** – dprint or prettier for Markdown + code.
 - **Compile** – Pandoc-based pipeline to create `build/book.md`, EPUB, PDF, HTML (already prototyped), optional DOCX/MOBI.
@@ -48,6 +53,7 @@ The goal is a UX where non-technical writers, editors, agents, and production pa
 - **AI Tasks** – templated prompts for editing suggestions, continuity checks, query-letter drafts, etc.
 
 ### 3.3 UX Layer (DraftForge Web App)
+
 - **Project Dashboard** – status of workflows, build artifacts, outstanding edits.
 - **Chapter Editor** – WYSIWYM (what-you-see-is-what-you-mean) Markdown editor with AI assist.
 - **Review Mode** – in-browser diff + comment threads tied to Git branches/PRs.
@@ -55,16 +61,19 @@ The goal is a UX where non-technical writers, editors, agents, and production pa
 - **AI Request Console** – submit structured prompts with references (chapters, characters), store outputs in repo.
 
 ### 3.4 Collaboration
+
 - Role-based invites (author, editor, agent, legal), mapped to GitHub org permissions.
 - Activity log showing commits, AI runs, workflow statuses.
 - Notifications (email/SMS/slack) for major events (legal builds ready, AI review done, exporter finished).
 
 ### 3.5 Legal & Release Toolkit
+
 - Prebuilt templates for legal filing packets (like Rachel/Eleanor’s case).
 - Evidence bundler: collects stats, metadata, neural scans, statements into exportable PDF/HTML.
 - Query/pitch builder with AI assistance plus tracked revisions.
 
 ### 3.6 Audio & Advanced Exports (Phase 2)
+
 - Audiobook script generator (plain text or SSML).
 - TTS integration via SSML exports; per-chapter audio output artifact.
 - Timeline visualizer (Scrivener-style corkboard) generated from metadata.
@@ -101,11 +110,13 @@ GitHub Repo (per project)
 When engaging another AI (coding agent, UX designer, etc.), provide:
 
 ### Prompt Header
+
 ```
 System: You are DraftForge’s engineering/design agent. You extend a GitHub-based novel-writing platform that orchestrates workflows via GitHub Actions. All output must be repo-ready (docs, code, workflows) and respect user ownership.
 ```
 
 ### Context Block (example)
+
 ```
 Context:
 - Repos contain Markdown chapters with YAML frontmatter (see /chapters)
@@ -124,6 +135,7 @@ Current Sprint Objectives:
 ```
 
 ### Ask to Agent
+
 ```
 Tasks:
 - Create `audiobook` Taskfile target that outputs plain-text + SSML per chapter.
@@ -163,6 +175,7 @@ Deliverables:
 ---
 
 ## 7. Key Open Questions
+
 - How to sandbox drafts for AI without exposing sensitive data? (e.g., optional “air-gapped” mode using local actions)
 - Licensing for AI models integrated into platform (OpenAI, Anthropic, self-hosted LLM)
 - Monetization beyond GHA credits (premium templates, dedicated support)?

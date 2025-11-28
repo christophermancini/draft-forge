@@ -1,0 +1,5 @@
+agents:
+  continuity:
+    enabled: true
+  style:
+    enabled: true

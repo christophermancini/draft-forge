@@ -44,6 +44,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Category 1: AI-First Writing Tools (Direct Competitors)
 
 #### Sudowrite
+
 - **Pricing:** $10-30/mo (subscription)
 - **Strengths:**
   - Specifically designed for fiction with features like "Story Bible"
@@ -55,6 +56,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
   - Subscription model with ongoing costs
 
 #### Novelcrafter
+
 - **Pricing:** $4-20/mo + API costs (subscription + usage)
 - **Strengths:**
   - Features a "codex" for storing information that AI pulls at relevant times
@@ -66,6 +68,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
   - Dual payment model may confuse users
 
 #### Squibler
+
 - **Pricing:** Varies (freemium model)
 - **Strengths:**
   - Claims to transform drafts into entire books or screenplays in minutes
@@ -79,6 +82,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Category 2: Traditional Writing Software
 
 #### Scrivener
+
 - **Pricing:** $59.99 one-time (single OS) or $95.98 (Mac/Windows bundle)
 - **Strengths:**
   - Contains no AI and doesn't participate in data scraping
@@ -92,6 +96,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
   - Complex feature set can be overwhelming
 
 #### Atticus
+
 - **Pricing:** $147 one-time (lifetime access + updates)
 - **Strengths:**
   - Combines writing and formatting in one tool
@@ -107,6 +112,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Category 3: Git/Markdown-Based Publishing
 
 #### Leanpub
+
 - **Pricing:** Free to publish, 80% royalty on sales $7.99+
 - **Strengths:**
   - Offers 80% royalties (vs 35-70% on Amazon)
@@ -121,6 +127,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
   - No direct customer access (can't build own mailing list easily)
 
 #### GitBook
+
 - **Pricing:** Site plan + User plan (complex pricing structure)
 - **Strengths:**
   - Professional documentation focus
@@ -134,6 +141,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
   - Can become expensive as team grows
 
 #### mdBook / Custom Solutions
+
 - **Pricing:** Free (open source) but requires significant technical expertise
 - **Strengths:**
   - Writers use Markdown + Git + Pandoc for complete control
@@ -153,33 +161,37 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Unmet Needs in Current Market
 
 #### 1. Git-Native + AI Assistance = Nobody
+
 - **Gap:** AI tools (Sudowrite, Novelcrafter) are proprietary platforms; Git tools (Leanpub, GitBook) have no meaningful AI integration
 - **Your Moat:** Combining both with GitHub Actions automation for stats, compilation, and distribution
 
 #### 2. Author Ownership + Professional Tooling
+
 - **Gap:** Writers using Markdown+Git cite "content will be human-readable forever" and version control benefits, but current git solutions require technical expertise
 - **Your Moat:** User-friendly interface + scaffolding that makes git accessible to non-technical writers without sacrificing power
 
 #### 3. Multi-Format Output Automation
+
 - **Gap:** Most AI tools output to their own formats; Git-based solutions require manual Pandoc compilation
 - **Your Moat:** GitHub Actions automatically generating EPUB, PDF, audiobook, and other formats from single Markdown source
 
 #### 4. Editorial AI vs. Generative AI
+
 - **Gap:** Most AI tools focus on content generation (which raises authenticity concerns)
 - **Your Positioning:** AI as editor/critic/assistant, not ghostwriter - aligns with author concerns about maintaining their voice
 
 ### Competitive Advantages Matrix
 
-| Feature | Your Platform | Sudowrite | Novelcrafter | Scrivener | Atticus | Leanpub |
-|---------|--------------|-----------|--------------|-----------|---------|---------|
-| Git-native | ✅ | ❌ | ❌ | ❌ | ❌ | Partial |
-| AI assistance | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
-| User owns content | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ |
-| Multi-model selection | ✅ | ❌ | ✅ | N/A | N/A | N/A |
-| Automated ops/stats | ✅ | ❌ | ❌ | Partial | ❌ | ❌ |
-| Less technical UX | ✅ | ✅ | Partial | ❌ | ✅ | Partial |
-| Multi-format output | ✅ | Partial | Partial | ✅ | ✅ | ✅ |
-| One-time purchase option | Possible | ❌ | ❌ | ✅ | ✅ | ✅ |
+| Feature                  | Your Platform | Sudowrite | Novelcrafter | Scrivener | Atticus | Leanpub |
+| ------------------------ | ------------- | --------- | ------------ | --------- | ------- | ------- |
+| Git-native               | ✅            | ❌        | ❌           | ❌        | ❌      | Partial |
+| AI assistance            | ✅            | ✅        | ✅           | ❌        | ❌      | ❌      |
+| User owns content        | ✅            | ❌        | ❌           | ✅        | ✅      | ✅      |
+| Multi-model selection    | ✅            | ❌        | ✅           | N/A       | N/A     | N/A     |
+| Automated ops/stats      | ✅            | ❌        | ❌           | Partial   | ❌      | ❌      |
+| Less technical UX        | ✅            | ✅        | Partial      | ❌        | ✅      | Partial |
+| Multi-format output      | ✅            | Partial   | Partial      | ✅        | ✅      | ✅      |
+| One-time purchase option | Possible      | ❌        | ❌           | ✅        | ✅      | ✅      |
 
 ---
 
@@ -188,6 +200,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Primary Target: Technical-Adjacent Creators (Highest PMF)
 
 **Who:**
+
 - Software developers writing technical books
 - Tech bloggers transitioning to books
 - Engineers/scientists writing non-fiction
@@ -196,6 +209,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Market Size:** Niche but high-value (50,000-100,000 globally)
 
 **Why This Segment:**
+
 - Already understand git and version control
 - Appreciate content ownership and portability
 - Value automation and reproducibility
@@ -203,6 +217,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 - Natural evangelists if product delivers
 
 **Conversion Strategy:**
+
 - Direct outreach in developer communities
 - HackerNews, Dev.to, r/programming
 - Technical writing conferences
@@ -211,6 +226,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Secondary Target: Power Users Seeking Control
 
 **Who:**
+
 - Established authors frustrated with platform lock-in
 - Writers managing multi-book series across years
 - Authors wanting to integrate custom workflows
@@ -219,12 +235,14 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Market Size:** Medium (100,000-250,000 globally)
 
 **Why This Segment:**
+
 - Willing to climb small learning curve for long-term benefits
 - Frustrated with subscription fatigue
 - Value long-term content preservation
 - Want flexibility to adapt tools to their process
 
 **Conversion Strategy:**
+
 - Content marketing showing "escape vendor lock-in"
 - Case studies of workflow improvements
 - Author community forums (Absolute Write, KBoards)
@@ -233,6 +251,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Tertiary Target: Non-Technical Writers (Longer-term)
 
 **Who:**
+
 - Fiction authors intimidated by current AI tools
 - First-time authors wanting guidance and structure
 - Creative writers seeking sustainable tools
@@ -241,12 +260,14 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Market Size:** Largest potential (500,000-1,000,000+ globally)
 
 **Why This Segment:**
+
 - Largest addressable market
 - Growing awareness of AI benefits
 - Desire for tools that "just work"
 - Need exceptional UX to overcome git/technical barriers
 
 **Conversion Strategy:**
+
 - User-friendly marketing emphasizing simplicity
 - Video tutorials and onboarding
 - Partnership with writing educators
@@ -261,25 +282,30 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Current Market Pricing Models
 
 #### Subscription (Monthly)
+
 - **Examples:** Sudowrite ($10-30/mo), Novelcrafter ($4-20/mo + API), Writesonic ($20-499/mo)
 - **Pros:** Predictable revenue, lower entry barrier, easier upgrades
 - **Cons:** Subscription fatigue, ongoing cost concerns, perceived lack of ownership
 
 #### One-Time Purchase
+
 - **Examples:** Scrivener ($59.99), Atticus ($147)
 - **Pros:** Appeals to cost-conscious authors, feels like "ownership", no recurring costs
 - **Cons:** Harder to justify high upfront cost for unproven product, revenue lumpy
 
 #### Credits-Based (Your Model)
+
 - **Pros:** Aligns cost with usage, manages API expenses transparently, fair to light users
 - **Cons:** Requires user education, potential "running out of credits" anxiety, complexity
 
 ### Recommended Hybrid Approach
 
 #### Tier 1: Free/Freemium (Growth Engine)
+
 **Pricing:** $0/month
 
 **Includes:**
+
 - Basic scaffolding + git repository setup
 - Limited AI credits (10,000 tokens/month)
 - Access to one AI model (e.g., Claude Haiku)
@@ -289,9 +315,11 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Goal:** Reduce friction, build user base, demonstrate value, viral growth
 
 #### Tier 2: Creator ($19-29/month)
+
 **Pricing:** $19/month (annual) or $25/month (monthly)
 
 **Includes:**
+
 - 150,000-200,000 tokens/month included
 - Access to multiple AI models (Claude, GPT-4, Gemini)
 - Full GitHub Actions automation (word counts, compilation, stats)
@@ -302,9 +330,11 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Goal:** Convert power users, cover API costs + healthy margin
 
 #### Tier 3: Professional ($49-69/month)
+
 **Pricing:** $49/month (annual) or $59/month (monthly)
 
 **Includes:**
+
 - 500,000 tokens/month or unlimited (rate-limited)
 - All AI models including newest/most expensive (GPT-4, Claude Opus)
 - Advanced automation (audiobook generation via TTS, translation)
@@ -316,9 +346,11 @@ This aggressive adoption curve suggests the market is still in early growth phas
 **Goal:** Serve established authors with high volume needs, maximize ARPU
 
 #### Credit Top-Ups
+
 **Pricing:** $10 for 100,000 additional tokens (adjustable)
 
 **Rationale:**
+
 - Prevents users from hitting walls mid-project
 - Provides flexibility for burst usage
 - Additional revenue stream
@@ -327,6 +359,7 @@ This aggressive adoption curve suggests the market is still in early growth phas
 ### Alternative: One-Time Option
 
 Consider offering a **lifetime tier** similar to Atticus:
+
 - **Pricing:** $299-$499 one-time
 - **Includes:** All features except AI credits
 - **AI Credits:** BYOK (Bring Your Own API Key) or purchase separately
@@ -341,6 +374,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Target:** Developers writing technical books
 
 **Channels:**
+
 - HackerNews (Show HN posts)
 - Dev.to, Hashnode blog posts
 - r/programming, r/webdev
@@ -350,6 +384,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Positioning:** "Leanpub + AI + Better Developer Experience"
 
 **Metrics:**
+
 - Goal: 100-500 users
 - Conversion: 10-15% free → paid
 - Gather qualitative feedback
@@ -362,6 +397,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Target:** Established authors seeking alternatives to mainstream tools
 
 **Channels:**
+
 - Writing community forums (Absolute Write, KBoards, r/writing)
 - Medium articles on "owning your content"
 - Podcast appearances on indie author shows
@@ -371,6 +407,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Positioning:** "Own your content, keep your workflow, add AI superpowers"
 
 **Metrics:**
+
 - Goal: 1,000-5,000 users
 - Refine non-technical UX based on feedback
 - Case studies and success stories
@@ -383,6 +420,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Target:** General fiction authors, first-time authors
 
 **Channels:**
+
 - Paid advertising (Facebook, BookBub Ads)
 - Author influencer partnerships (YouTube, TikTok)
 - Content marketing at scale
@@ -392,6 +430,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 **Positioning:** "The writing platform that grows with you, from first draft to bestseller"
 
 **Metrics:**
+
 - Goal: 10,000+ users
 - Establish category leadership
 - Strong organic growth through word-of-mouth
@@ -406,6 +445,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 ### Competition Risks
 
 #### Risk: Established players (Scrivener, Atticus) add AI features
+
 - **Likelihood:** Medium-High (AI is obvious enhancement)
 - **Impact:** Could commoditize AI features quickly
 - **Mitigation:**
@@ -415,6 +455,7 @@ Consider offering a **lifetime tier** similar to Atticus:
   - Emphasize multi-model flexibility vs. single AI integration
 
 #### Risk: AI-first tools (Sudowrite) add git integration
+
 - **Likelihood:** Low (requires major rearchitecting)
 - **Impact:** Would directly compete with your positioning
 - **Mitigation:**
@@ -426,6 +467,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 ### Technical Risks
 
 #### Risk: GitHub's free tier limits Actions minutes
+
 - **Current Limits:** 2,000 minutes/month on free tier, 3,000 on Pro
 - **Impact:** Users could hit limits with heavy automation
 - **Mitigation:**
@@ -435,6 +477,7 @@ Consider offering a **lifetime tier** similar to Atticus:
   - Cache aggressively to minimize rebuild time
 
 #### Risk: AI API costs fluctuate or increase dramatically
+
 - **Likelihood:** Medium (has happened before, will likely happen again)
 - **Impact:** Could squeeze margins or force price increases
 - **Mitigation:**
@@ -444,6 +487,7 @@ Consider offering a **lifetime tier** similar to Atticus:
   - Offer BYOK (Bring Your Own Key) option at higher tier
 
 #### Risk: AI model quality degradation or availability issues
+
 - **Likelihood:** Low-Medium (OpenAI, Anthropic outages do happen)
 - **Impact:** User frustration, potential churn
 - **Mitigation:**
@@ -455,6 +499,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 ### Market Risks
 
 #### Risk: "Git" remains too scary for non-developers
+
 - **Likelihood:** Medium (strong evidence from current market)
 - **Impact:** Limits TAM to technical users only
 - **Mitigation:**
@@ -465,6 +510,7 @@ Consider offering a **lifetime tier** similar to Atticus:
   - Educational content that demystifies without overwhelming
 
 #### Risk: AI writing tools face regulatory/copyright backlash
+
 - **Likelihood:** Medium (already happening in some jurisdictions)
 - **Impact:** Could limit AI features or require significant changes
 - **Mitigation:**
@@ -475,6 +521,7 @@ Consider offering a **lifetime tier** similar to Atticus:
   - Stay ahead of regulatory developments
 
 #### Risk: Market saturation / "AI writing tool" fatigue
+
 - **Likelihood:** Low-Medium (market still growing, but competition increasing)
 - **Impact:** Harder to differentiate, higher CAC
 - **Mitigation:**
@@ -488,9 +535,11 @@ Consider offering a **lifetime tier** similar to Atticus:
 ## Key Success Factors
 
 ### 1. Nail the "Invisible Git" Experience
+
 **Critical:** Non-technical users shouldn't know they're using git unless they want to
 
 **How:**
+
 - Visual branching/merging (not terminal commands)
 - "Versions" not "commits"
 - "Save point" not "commit message"
@@ -499,9 +548,11 @@ Consider offering a **lifetime tier** similar to Atticus:
 - Error messages in plain English
 
 ### 2. Multi-Model Flexibility
+
 **Critical:** Don't lock users into one AI provider
 
 **How:**
+
 - Support OpenAI, Anthropic, Google, Cohere, Open-source
 - Easy model switching mid-project
 - Cost comparison tool
@@ -509,9 +560,11 @@ Consider offering a **lifetime tier** similar to Atticus:
 - BYOK option for advanced users
 
 ### 3. Exceptional Scaffolding
+
 **Critical:** Make starting a project feel magical, not overwhelming
 
 **How:**
+
 - Genre-specific templates (fiction, non-fiction, technical, screenplay)
 - Auto-generated folder structure
 - Pre-configured GitHub Actions
@@ -520,9 +573,11 @@ Consider offering a **lifetime tier** similar to Atticus:
 - Video walkthroughs embedded in UI
 
 ### 4. Community and Network Effects
+
 **Critical:** Build community to create moat and reduce churn
 
 **How:**
+
 - Public template gallery (user-shared scaffolds)
 - Workflow marketplace
 - Author showcase
@@ -531,9 +586,11 @@ Consider offering a **lifetime tier** similar to Atticus:
 - Feature voting/roadmap transparency
 
 ### 5. Content Portability
+
 **Critical:** Make it trivial to export and use elsewhere (builds trust)
 
 **How:**
+
 - Export to standard formats (docx, epub, pdf, markdown)
 - No proprietary file formats
 - Document all APIs and webhooks
@@ -546,6 +603,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 ## Financial Projections
 
 ### Year 1 (Months 1-12)
+
 **Focus:** Technical niche, product-market fit
 
 - **Users:** 500 total (100 paid @ $25 avg)
@@ -555,6 +613,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 - **Status:** Pre-revenue / Early traction
 
 ### Year 2 (Months 13-24)
+
 **Focus:** Power user expansion, feature development
 
 - **Users:** 3,000 total (600 paid @ $30 avg)
@@ -564,6 +623,7 @@ Consider offering a **lifetime tier** similar to Atticus:
 - **Status:** Revenue growth, path to profitability
 
 ### Year 3 (Months 25-36)
+
 **Focus:** Scale to fiction market, category leadership
 
 - **Users:** 15,000 total (3,000 paid @ $30 avg)
@@ -573,18 +633,21 @@ Consider offering a **lifetime tier** similar to Atticus:
 - **Status:** Profitable or near-profitable, Series A ready
 
 ### Conservative Scenario (Year 3)
+
 - 10,000 users total
 - 1,500 paid (15% conversion)
 - $25 ARPU
 - **ARR:** $450,000
 
 ### Optimistic Scenario (Year 3)
+
 - 25,000 users total
 - 5,000 paid (20% conversion)
 - $35 ARPU
 - **ARR:** $2,100,000
 
 **Key Assumptions:**
+
 - 15-20% free-to-paid conversion (industry standard for developer tools)
 - $30-50 CAC (organic + paid mix)
 - 5% monthly churn (good for subscription software)
@@ -633,7 +696,9 @@ Consider offering a **lifetime tier** similar to Atticus:
 ## Success Metrics & KPIs
 
 ### North Star Metric
+
 **Weekly Active AI-Assisted Writing Sessions**
+
 - Indicates actual engagement, not just signups
 - Correlates with retention and LTV
 - Easy to track, hard to game
@@ -641,35 +706,41 @@ Consider offering a **lifetime tier** similar to Atticus:
 ### Supporting Metrics
 
 **Acquisition:**
+
 - Signups per week
 - Conversion rate (visitor → signup)
 - CAC (Customer Acquisition Cost)
 - Top referral sources
 
 **Activation:**
+
 - % users who complete first project setup
 - Time to first AI interaction
 - % users who publish first chapter
 
 **Engagement:**
+
 - DAU/MAU ratio
 - Words written per user per week
 - AI credits used (indicates value extraction)
 - GitHub Actions runs per user
 
 **Retention:**
+
 - 30-day retention rate
 - 90-day retention rate
 - Monthly churn rate
 - NPS (Net Promoter Score)
 
 **Revenue:**
+
 - MRR and MRR growth rate
 - ARPU (Average Revenue Per User)
 - LTV:CAC ratio (target 3:1 minimum)
 - Conversion rate (free → paid)
 
 **Product Quality:**
+
 - Support ticket volume
 - Time to resolution
 - Feature request votes
@@ -710,17 +781,21 @@ Consider offering a **lifetime tier** similar to Atticus:
 This concept has **excellent product-market fit potential** in a rapidly expanding market. Your unique positioning at the intersection of git workflows, AI assistance, and content ownership addresses real pain points that no current competitor fully solves.
 
 ### Biggest Opportunity
+
 The technical writer → fiction author pipeline is underserved and growing rapidly. This segment has money, understands your value prop, and will evangelize if you deliver.
 
 ### Biggest Risk
+
 Execution on the "non-technical interface" - if you can't make Git truly invisible, you're limited to developer-adjacent users (~100k TAM vs. 1M+ TAM).
 
 ### Realistic TAM (Total Addressable Market)
+
 - **Near-term (0-2 years):** 50k-100k technical writers/power users globally
 - **Medium-term (2-5 years):** 500k-1M+ fiction authors as UX matures
 - **Long-term (5+ years):** Multi-million if you nail mainstream appeal
 
 ### Estimated Revenue Potential
+
 - **Year 1:** $30k ARR (proof of concept)
 - **Year 2:** $216k ARR (product-market fit)
 - **Year 3:** $450k-2.1M ARR (scale phase)
@@ -732,6 +807,7 @@ Execution on the "non-technical interface" - if you can't make Git truly invisib
 ## Next Steps (Recommended Action Plan)
 
 ### Immediate (Next 30 Days)
+
 1. **Validate Core Assumptions**
    - Interview 20-30 technical authors about current pain points
    - Test git abstraction concepts with non-technical writers
@@ -748,6 +824,7 @@ Execution on the "non-technical interface" - if you can't make Git truly invisib
    - Draft content marketing plan for developer communities
 
 ### Short-term (Months 2-6)
+
 4. **Build MVP**
    - Focus ruthlessly on technical writers first
    - Core features: scaffolding, AI editor, GitHub Actions automation
@@ -764,6 +841,7 @@ Execution on the "non-technical interface" - if you can't make Git truly invisib
    - Start Discord/Slack community
 
 ### Medium-term (Months 7-12)
+
 7. **Expand to Power Users**
    - Polish non-technical interface
    - Add collaboration features
@@ -784,6 +862,7 @@ Execution on the "non-technical interface" - if you can't make Git truly invisib
 ## Appendix: Market Research Sources
 
 This analysis synthesized data from:
+
 - Grand View Research (AI Content Creation Market Report)
 - Market.us (AI Book Writing Market Analysis)
 - DataIntelo (AI Writing Assistant Market Report)

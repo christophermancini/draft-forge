@@ -33,6 +33,7 @@ GET /api/v1/auth/github/callback?code={code}&state={state}
 Handles OAuth callback from GitHub, exchanges code for access token.
 
 **Response:**
+
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -61,6 +62,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -79,6 +81,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response:**
+
 ```json
 {
   "id": 1,
@@ -106,10 +109,12 @@ Authorization: Bearer {access_token}
 ```
 
 **Query Parameters:**
+
 - `page` (optional): Page number (default: 1)
 - `limit` (optional): Results per page (default: 20)
 
 **Response:**
+
 ```json
 {
   "projects": [
@@ -146,6 +151,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response:**
+
 ```json
 {
   "id": 1,
@@ -203,6 +209,7 @@ Content-Type: application/json
 **Response:** Same as Get Project (201 Created)
 
 **Side Effects:**
+
 1. Creates a new GitHub repository under user's account
 2. Scaffolds project structure based on `project_type`
 3. Initializes `.draftforge/` configuration
@@ -258,10 +265,12 @@ Authorization: Bearer {access_token}
 ```
 
 **Query Parameters:**
+
 - `agent_type` (optional): Filter by agent type
 - `status` (optional): Filter by status
 
 **Response:**
+
 ```json
 {
   "runs": [
@@ -309,6 +318,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "run_id": 1,
@@ -342,6 +352,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response:**
+
 ```json
 {
   "repositories": [
@@ -369,6 +380,7 @@ Authorization: Bearer {access_token}
 Syncs project stats from GitHub (word count, commit history, etc.)
 
 **Response:**
+
 ```json
 {
   "synced_at": "2025-10-29T14:30:00Z",
@@ -392,9 +404,11 @@ Authorization: Bearer {access_token}
 ```
 
 **Query Parameters:**
+
 - `period` (optional): `day`, `week`, `month`, `all` (default: `month`)
 
 **Response:**
+
 ```json
 {
   "word_count": {
@@ -431,6 +445,7 @@ Authorization: Bearer {access_token}
 ```
 
 **Response:**
+
 ```json
 {
   "remaining": 150000,
@@ -450,10 +465,12 @@ Authorization: Bearer {access_token}
 ```
 
 **Query Parameters:**
+
 - `start_date` (optional): ISO 8601 date
 - `end_date` (optional): ISO 8601 date
 
 **Response:**
+
 ```json
 {
   "usage": [
@@ -490,6 +507,7 @@ All errors follow this format:
 ```
 
 **Common Error Codes:**
+
 - `UNAUTHORIZED` (401): Invalid or missing JWT token
 - `FORBIDDEN` (403): User doesn't have access to resource
 - `NOT_FOUND` (404): Resource not found
@@ -507,6 +525,7 @@ All errors follow this format:
 - **Professional tier:** 2000 requests/hour
 
 Rate limit headers included in all responses:
+
 ```
 X-RateLimit-Limit: 500
 X-RateLimit-Remaining: 487
@@ -518,11 +537,13 @@ X-RateLimit-Reset: 1698764400
 ## Webhooks (Future)
 
 DraftForge will send webhooks for events like:
+
 - `agent.run.completed`
 - `project.stats.updated`
 - `credits.low`
 
 Webhook payload format:
+
 ```json
 {
   "event": "agent.run.completed",

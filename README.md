@@ -69,6 +69,7 @@ task setup
 ```
 
 This will:
+
 - Install Go dependencies
 - Start PostgreSQL in Docker
 - Run database migrations
@@ -81,6 +82,7 @@ task dev
 ```
 
 This starts:
+
 - PostgreSQL database on port 5432
 - Go API server on port 8080
 - SvelteKit frontend on port 5173
@@ -130,6 +132,7 @@ draftforge/
 ### Available Tasks
 
 View all available tasks:
+
 ```bash
 task --list
 ```
@@ -333,10 +336,17 @@ Full API documentation: [docs/api-design.md](docs/api-design.md)
 **Base URL:** `http://localhost:8080/api/v1`
 
 **Key endpoints:**
+
 - `POST /auth/github` - GitHub OAuth login
 - `GET /projects` - List user's projects
 - `POST /projects` - Create new project
 - `POST /projects/:id/agents/run` - Trigger AI agent
+
+---
+
+## 🗺️ Roadmap
+
+See [docs/roadmap.md](docs/roadmap.md) for the path from PoC to MVP with actionable tasks and references.
 
 ---
 

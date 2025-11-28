@@ -57,6 +57,7 @@ DraftForge follows a modern, cloud-native architecture designed for scalability,
 **Technology:** SvelteKit 2.5 + TypeScript + Tailwind CSS + DaisyUI
 
 **Responsibilities:**
+
 - User interface and interaction
 - Client-side routing
 - Form validation
@@ -64,12 +65,14 @@ DraftForge follows a modern, cloud-native architecture designed for scalability,
 - Real-time preview
 
 **Key Features:**
+
 - Server-side rendering (SSR)
 - Progressive enhancement
 - Optimistic UI updates
 - WebSocket support (future)
 
 **Hosting:** Cloudflare Pages
+
 - Global CDN distribution
 - Zero-config deployment
 - Automatic HTTPS
@@ -94,6 +97,7 @@ backend/
 ```
 
 **Domain Structure:**
+
 ```
 internal/projects/
 ├── models.go        # Data models
@@ -104,6 +108,7 @@ internal/projects/
 ```
 
 **Hosting:** DigitalOcean App Platform
+
 - Auto-scaling based on load
 - Built-in monitoring
 - Zero-downtime deployments
@@ -115,6 +120,7 @@ internal/projects/
 **Version:** PostgreSQL 17
 
 **Schema Design Principles:**
+
 - Normalized data structure
 - JSONB for flexible metadata
 - Foreign keys with CASCADE
@@ -122,11 +128,13 @@ internal/projects/
 - Timestamp tracking with triggers
 
 **Migration Strategy:**
+
 - Version-controlled SQL migrations
 - Forward and backward migrations
 - Safe, idempotent operations
 
 **Hosting:** DigitalOcean Managed PostgreSQL
+
 - Automated backups
 - Point-in-time recovery
 - Connection pooling
@@ -163,6 +171,7 @@ User               Frontend              Backend              GitHub
 ```
 
 **Token Management:**
+
 - **Access Token (JWT):** 15-minute expiry, contains user ID and permissions
 - **Refresh Token:** 30-day expiry, stored in database, can be revoked
 - **GitHub Token:** Stored encrypted in database for API calls
@@ -201,6 +210,7 @@ User             Frontend          Backend           GitHub API
 ```
 
 **Scaffolding Process:**
+
 1. Select template based on `project_type`
 2. Populate template variables (name, author, etc.)
 3. Generate file tree
@@ -246,12 +256,14 @@ Trigger            Queue              Worker             AI API
 ### Agent Architecture
 
 **Agent Types:**
+
 1. **ContinuityBot** - Character/plot consistency
 2. **StyleBot** - Writing style analysis
 3. **TimelineBot** - Chronological validation
 4. **FactBot** - Factual accuracy checking
 
 **Agent Structure:**
+
 ```go
 type Agent interface {
     Name() string
@@ -275,6 +287,7 @@ type Result struct {
 ```
 
 **Queue Implementation:**
+
 - PostgreSQL-based job queue (simple, reliable)
 - Retry logic with exponential backoff
 - Dead letter queue for failed jobs
@@ -311,22 +324,31 @@ user-project/
 ### GitHub Actions Integration
 
 **Stats Workflow** (`stats.yml`):
+
 - Triggers on every push
 - Counts words per chapter
 - Updates project stats in DraftForge
 - Generates progress chart
 
 **Compile Workflow** (`compile.yml`):
+
 - Triggers on tag creation
 - Uses Pandoc to build EPUB/PDF
 - Uploads artifacts to Cloudflare R2
 - Creates GitHub release
 
 **AI Review Workflow** (`ai-review.yml`):
+
 - Triggers on PR creation
 - Calls DraftForge API to queue agent runs
 - Posts results as PR comments
 - Blocks merge if critical issues found (optional)
+
+### Automation Catalog UX
+
+- In the DraftForge app, authors toggle workflows (stats, compile, AI review, audio/SSML, etc.) from a catalog UI.
+- Enabling/disabling writes the corresponding `.github/workflows/*.yml` (and `.draftforge/config.yml` if needed) via commit/PR so automation remains transparent and user-owned.
+- Workflow defaults live in the platform, but the repo is always the source of truth.
 
 ---
 
@@ -364,23 +386,27 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Security Architecture
 
 ### Authentication
+
 - GitHub OAuth 2.0 for user login
 - JWT for API authentication
 - Refresh tokens for session management
 - PKCE for OAuth flow (future enhancement)
 
 ### Authorization
+
 - Row-level security via user_id checks
 - Project ownership validation
 - GitHub token scoping (minimal permissions)
 
 ### Data Security
+
 - Passwords never stored (OAuth only)
 - GitHub tokens encrypted at rest (AES-256)
 - HTTPS everywhere
 - CORS configured for frontend origin only
 
 ### API Security
+
 - Rate limiting per user tier
 - Request size limits
 - SQL injection prevention (parameterized queries)
@@ -391,16 +417,19 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Scalability Considerations
 
 ### Horizontal Scaling
+
 - Stateless API servers (can run multiple instances)
 - Load balancing via DigitalOcean/Cloudflare
 - Database connection pooling
 
 ### Vertical Scaling
+
 - Database can scale up as needed
 - Separate read replicas (future)
 - Caching layer (Redis) for hot data (future)
 
 ### Cost Optimization
+
 - Efficient AI token usage (context pruning)
 - Cloudflare caching for static assets
 - Lazy loading of large files
@@ -411,6 +440,7 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Monitoring & Observability
 
 ### Metrics (Future)
+
 - API response times (p50, p95, p99)
 - Database query performance
 - AI token consumption
@@ -418,12 +448,14 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 - Active users and sessions
 
 ### Logging
+
 - Structured JSON logs
 - Request/response logging
 - Error stack traces
 - Audit trail for sensitive operations
 
 ### Alerting
+
 - Database connection failures
 - High error rates
 - AI API failures
@@ -434,6 +466,7 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Disaster Recovery
 
 ### Backup Strategy
+
 - PostgreSQL: Daily automated backups (7-day retention)
 - Point-in-time recovery available
 - GitHub repos: User owns, naturally backed up
@@ -441,18 +474,22 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ### Failure Scenarios
 
 **Database Failure:**
+
 - DigitalOcean auto-failover (managed service)
 - Restore from backup (RPO: 24 hours)
 
 **API Server Failure:**
+
 - Auto-restart via App Platform
 - Multiple instances for redundancy
 
 **GitHub API Outage:**
+
 - Queue operations for retry
 - Graceful degradation (read-only mode)
 
 **AI API Failure:**
+
 - Fallback to alternative models
 - Retry with exponential backoff
 - User notification of delays
@@ -462,12 +499,14 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Future Enhancements
 
 ### Phase 2 Additions
+
 - Redis cache layer
 - WebSocket for real-time updates
 - Elasticsearch for full-text search
 - Background job dashboard
 
 ### Phase 3 Additions
+
 - Multi-region deployment
 - Read replicas
 - GraphQL API
@@ -478,6 +517,7 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 ## Technology Choices Rationale
 
 **Go + Fiber:**
+
 - High performance, low memory footprint
 - Excellent concurrency primitives
 - Type safety
@@ -485,24 +525,28 @@ GitHub Webhook → Queue → Worker → OpenRouter → Result Parser → Databas
 - Simple deployment (single binary)
 
 **SvelteKit:**
+
 - Minimal bundle size
 - Great DX with reactive primitives
 - SSR out of the box
 - Cloudflare Pages deployment
 
 **PostgreSQL:**
+
 - Mature, battle-tested
 - Excellent JSONB support
 - Strong consistency guarantees
 - Rich extension ecosystem
 
 **DigitalOcean:**
+
 - Competitive pricing
 - Simple, predictable billing
 - Good developer experience
 - Sufficient scale for MVP
 
 **OpenRouter:**
+
 - Multi-model support
 - Transparent pricing
 - Single API for all providers

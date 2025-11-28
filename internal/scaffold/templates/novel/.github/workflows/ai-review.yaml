@@ -1,0 +1,13 @@
+name: AI Review
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Queue AI review
+        run: echo "TODO: call DraftForge API"
